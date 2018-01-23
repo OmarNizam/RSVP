@@ -5,7 +5,8 @@ import GuestName from './GuestName';
 const Guest = props =>
 
     <li>
-      <GuestName isEditing={props.isEditing}>
+      <GuestName isEditing={props.isEditing}
+                 handleNameEdits={e => props.setName(e.target.value)}>
         {props.name}
       </GuestName>
       <label>
@@ -14,7 +15,7 @@ const Guest = props =>
                onChange={props.handleConfirmation}
               /> Confirmed
       </label>
-      <button onClick={props.handleToggleEditing}>edit</button>
+      <button onClick={props.handleToggleEditing}>{props.isEditing ? "save" : "edit"}</button>
       <button>remove</button>
     </li>;
 
@@ -24,6 +25,7 @@ Guest.propTypes = {
   isEditing: PropTypes.bool.isRequired,
   handleConfirmation: PropTypes.func.isRequired,
   handleToggleEditing: PropTypes.func.isRequired,
+  setName: PropTypes.func.isRequired,
 
 }
 
